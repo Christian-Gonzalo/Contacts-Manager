@@ -23,7 +23,7 @@ public class FileIO {
         Input entry = new Input();
         System.out.println("Enter the name you're looking for: ");
     }
-    public static void deletContact(){
+    public static void deleteContact(){
         Input entry = new Input();
         System.out.println("Enter the contact you want to delete: ");
     }
