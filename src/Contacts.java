@@ -2,7 +2,7 @@ public class contacts {
     private String name;
     private String phoneNum;
 
-    public contacts(String aName, String aPhoneNum){
+    public Contacts(String aName, String aPhoneNum){
         this.name = aName;
         this.phoneNum = aPhoneNum;
     }
