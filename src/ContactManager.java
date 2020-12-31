@@ -9,10 +9,10 @@ public class ContactManager {
     }
 
     public static void displayUi(){
-        System.out.println("1. View contacts.");
-        System.out.println("2. Add a new contact.");
-        System.out.println("3. Search a contact by name.");
-        System.out.println("4. Delete an existing contact.");
+        System.out.println("1. View Hobbits.");
+        System.out.println("2. Add a new Hobbit.");
+        System.out.println("3. Search a Hobbit by name.");
+        System.out.println("4. Delete an existing Hobbit.");
         System.out.println("5. Exit.");
         space();
         usersChoice();
@@ -35,7 +35,7 @@ public class ContactManager {
                 FileIO.deleteContact();
                 break;
             case 5:
-                System.out.println("Sayonara");
+                System.out.println("Safe travels on your quest!");
                 break;
 
             default:
@@ -52,7 +52,7 @@ public class ContactManager {
             space();
             displayUi();
         }else {
-            System.out.println("Take care!");
+            System.out.println("Safe travels on your quest!");
             System.exit(0);
         }
     }

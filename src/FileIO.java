@@ -21,7 +21,7 @@ public class FileIO {
                 System.out.println(contact);
             }
         } catch (IOException e) {
-            System.err.println("Contacts file not found.");
+            System.err.println("Hobbit not found.");
         } finally {
             ContactManager.continueChoosing();
         }
@@ -31,7 +31,9 @@ public class FileIO {
         String areaCode = null;
         String exchangeCode = null;
         String subscriberNum = null;
-        if (aNum.length() == 10) {
+        if (aNum.length() > 10 || aNum.length() == 8 || aNum.length() == 9 || aNum.length() <= 6) {
+            System.out.println("Please only use numerals.");
+        } else if (aNum.length() == 10) {
             areaCode = "(" + aNum.substring(0, 3) + ") ";
             exchangeCode = aNum.substring(3, 6) + "-";
             subscriberNum = aNum.substring(6);
@@ -40,13 +42,14 @@ public class FileIO {
             exchangeCode = aNum.substring(0, 3) + "-";
             subscriberNum = aNum.substring(3);
         }
+
         return new StringBuilder().append(areaCode).append(exchangeCode).append(subscriberNum).toString();
     }
 
     public static void addContact() {
         Input entry = new Input();
         gotMatch = false;
-        System.out.print("Enter your new contacts name: ");
+        System.out.print("Enter your new Hobbits name: ");
         String name = entry.getString();
         ContactManager.space();
         try {
@@ -60,8 +63,8 @@ public class FileIO {
                 }
             }
             if (gotMatch) {
-                System.out.println("A name match was found in your contact's list.\n" +
-                        "Would you like to continue adding a new contact?");
+                System.out.println("A name match was found in your Hobbits list.\n" +
+                        "Would you like to continue adding a new Hobbit?");
                 if (!entry.yesNo()) {
                     ContactManager.continueChoosing();
                 }
@@ -71,7 +74,7 @@ public class FileIO {
             System.err.println("Contact file not found.");
             ContactManager.continueChoosing();
         }
-        System.out.print("Enter new contact's phone number:(numbers only, please) ");
+        System.out.print("Enter new Hobbits phone number:(numbers only, please) ");
         String phoneNum = formatPhoneNum(entry.getString());
         try {
             Files.write(
@@ -80,7 +83,7 @@ public class FileIO {
                     StandardOpenOption.APPEND
             );
         } catch (IOException e) {
-            System.err.println("Unable to create new contact. Target file not found.");
+            System.err.println("Unable to create new Hobbit. Target Hobbit not found.");
         } finally {
             ContactManager.continueChoosing();
         }
@@ -89,7 +92,7 @@ public class FileIO {
     public static void searchContacts() {
         Input entry = new Input();
         gotMatch = false;
-        System.out.print("Enter the name you're looking for: ");
+        System.out.print("Enter the Hobbit you're looking for: ");
         String search = entry.getString().toLowerCase();
         try {
             List<String> currentList = Files.readAllLines(dataFile);
@@ -112,7 +115,7 @@ public class FileIO {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Contacts file not found.");
+            System.err.println("Hobbit not found.");
         } finally {
             ContactManager.continueChoosing();
         }
@@ -121,10 +124,10 @@ public class FileIO {
     public static void deleteContact() {
         Input entry = new Input();
         gotMatch = false;
-        System.out.print("Enter the contact you're deleting: ");
+        System.out.print("Enter the Hobbit you're deleting: ");
         String search = entry.getString().toLowerCase();
         if (search.isEmpty()) {
-            System.out.println("Don't be squeamish. Tell me the person's name please. ");
+            System.out.println("Did this Hobbit wear the ring and disappear? Enter a name ");
             deleteContact();
         }
         try {
@@ -133,11 +136,11 @@ public class FileIO {
             for (String potentialVictim : hereForNow) {
                 if (potentialVictim.toLowerCase().contains(search)) {
                     System.out.println(potentialVictim);
-                    System.out.print("Is this the contact you want to delete? ");
+                    System.out.print("Is this the Hobbit you want to delete? ");
                     gotMatch = true;
                     if (entry.yesNo()) {
                         ContactManager.space();
-                        System.out.println("That contact is now dead to you.");
+                        System.out.println("That Hobbit has left the Shire.");
                     } else {
                         keepers.add(potentialVictim);
                     }
@@ -150,7 +153,7 @@ public class FileIO {
             }
             writeContactsList(keepers);
         } catch (IOException e) {
-            System.err.println("Contacts file not found.");
+            System.err.println("Hobbit not found.");
         } finally {
             ContactManager.continueChoosing();
         }
@@ -177,13 +180,13 @@ public class FileIO {
             }
             fw.close();
         } catch (IOException e) {
-            System.err.println("Error. Contacts file could not be created or overwritten");
+            System.err.println("Error. Hobbit could not be created or overwritten");
         }
     }
 
     public static void showContactsHeader() {
         ContactManager.space();
-        System.out.printf("%-20s | %-20s\n", "Name", "Phone Number");
+        System.out.printf("%-20s | %-20s\n", "Hobbit", "Phone Number");
         System.out.println("-------------------------------------------");
     }
 
