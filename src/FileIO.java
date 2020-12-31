@@ -31,8 +31,12 @@ public class FileIO {
         String areaCode = null;
         String exchangeCode = null;
         String subscriberNum = null;
-        if (aNum.length() > 10 || aNum.length() == 8 || aNum.length() == 9 || aNum.length() <= 6) {
+        if (aNum.length() > 10) {
             System.out.println("Please only use numerals.");
+        } else if (aNum.length() == 8 || aNum.length() == 9) {
+            System.out.println("Please enter a three digit area code.");
+        } else if (aNum.length() <= 6) {
+            System.out.println("Please enter a 10 or 7 digit phone number.");
         } else if (aNum.length() == 10) {
             areaCode = "(" + aNum.substring(0, 3) + ") ";
             exchangeCode = aNum.substring(3, 6) + "-";
