@@ -1,14 +1,14 @@
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class ContactManager {
     public static void main(String[] args){
         displayUi();
-
-
     }
 
     public static void displayUi(){
+        System.out.println("Welcome to your Hobbit Manager:");
         System.out.println("1. View Hobbits.");
         System.out.println("2. Add a new Hobbit.");
         System.out.println("3. Search a Hobbit by name.");
@@ -39,7 +39,7 @@ public class ContactManager {
                 break;
 
             default:
-                System.out.println("Looks like you've made an invalid selection.");
+                System.out.println("Looks like you've made an invalid selection. Try again.");
                 usersChoice();
         }
     }
